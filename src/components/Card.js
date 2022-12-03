@@ -1,9 +1,20 @@
 function Card(props) {
 
     return (
-     <li className="card" id={props.card._id}>
+     <li 
+        className="card" 
+        id={props.card._id}
+        onClick={() => props.onClick(props.card)}
+    >
         <div className="photo-grid__item">
-            <button className="photo-grid__delete-button hover-opacity" type="button" aria-label="Удалить"></button>
+            {props.userID === props.card.owner._id && (
+                <button 
+                    className="photo-grid__delete-button hover-opacity" 
+                    type="button" 
+                    aria-label="Удалить"
+                />
+            )}
+            
             <img className="photo-grid__pic" src={props.card.link} alt={props.card.name}/>
             <div className="photo-grid__pic-info">
                 <h2 className="photo-grid__pic-title">{props.card.name}</h2>

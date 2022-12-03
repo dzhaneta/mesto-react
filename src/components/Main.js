@@ -4,27 +4,29 @@ import Card from "./Card";
 
 function Main(props) {
     const [userName, setUserName] = useState();
+    const [userId, setUserId] = useState();
     const [userDescription, setUserDescription] = useState();
     const [userAvatar, setUserAvatar] = useState();
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
         api.getProfile()
-        .then((profile) => {
-            setUserName(profile['name']);
-            setUserDescription(profile['about']);
-            setUserAvatar(profile['avatar']);
-        })
-        .catch((err) => {console.log(err);});
+            .then((profile) => {
+                setUserName(profile['name']);
+                setUserDescription(profile['about']);
+                setUserAvatar(profile['avatar']);
+                setUserId(profile['_id']);
+            })
+            .catch((err) => {console.log(err);});
     }, []);
 
 
     useEffect(() => {
         api.getCards()
-        .then((cardsData) => {
-           setCards(cardsData);
-        })
-        .catch((err) => {console.log(err);});
+            .then((cardsData) => {
+            setCards(cardsData);
+            })
+            .catch((err) => {console.log(err);});
     }, []);
 
 
@@ -48,7 +50,12 @@ function Main(props) {
                 <ul className="photo-grid">
                     
                     {cards.map((item, i) => (
-                        <Card onClick={props.onCardClick} card={item} key={i} />
+                        <Card 
+                            userID={userId}
+                            onClick={props.onCardClick} 
+                            card={item} 
+                            key={i} 
+                        />
                     ))}
 
                 </ul>
@@ -57,7 +64,7 @@ function Main(props) {
         </main>
 
     );
-  }
+}
   
   export default Main;
   
