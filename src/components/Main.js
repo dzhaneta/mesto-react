@@ -3,32 +3,23 @@ import api from '../utils/api';
 import Card from "./Card";
 
 function Main(props) {
-    const [userName, setUserName] = useState();
-    const [userId, setUserId] = useState();
-    const [userDescription, setUserDescription] = useState();
-    const [userAvatar, setUserAvatar] = useState();
+    const [userName, setUserName] = useState('');
+    const [userId, setUserId] = useState('');
+    const [userDescription, setUserDescription] = useState('');
+    const [userAvatar, setUserAvatar] = useState('');
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        api.getProfile()
-            .then((profile) => {
+        Promise.all([api.getProfile(), api.getCards()])
+            .then(([profile, cardsData]) => {
                 setUserName(profile['name']);
                 setUserDescription(profile['about']);
                 setUserAvatar(profile['avatar']);
                 setUserId(profile['_id']);
+                setCards(cardsData);
             })
             .catch((err) => {console.log(err);});
     }, []);
-
-
-    useEffect(() => {
-        api.getCards()
-            .then((cardsData) => {
-            setCards(cardsData);
-            })
-            .catch((err) => {console.log(err);});
-    }, []);
-
 
     return (
         <main className="content">
@@ -54,7 +45,7 @@ function Main(props) {
                             userID={userId}
                             onClick={props.onCardClick} 
                             card={item} 
-                            key={i} 
+                            key={item._id} 
                         />
                     ))}
 

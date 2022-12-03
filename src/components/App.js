@@ -54,6 +54,7 @@ function App() {
         onClose={closeAllPopups} 
         name="edit-profile" 
         title="Редактировать профиль"
+        button="Сохранить"
       >
         <fieldset className="form__input-container">
           <label className="form__field">
@@ -83,7 +84,6 @@ function App() {
             <span className="form__input-error userabout-error"/>
           </label>
         </fieldset>
-        <button className="form__save-button" type="submit">Сохранить</button>
       </PopupWithForm>
 
       <PopupWithForm 
@@ -91,6 +91,7 @@ function App() {
         onClose={closeAllPopups} 
         name="edit-avatar" 
         title="Обновить аватар"
+        button="Сохранить"
       >
         <fieldset className="form__input-container">
           <label className="form__field">
@@ -105,7 +106,6 @@ function App() {
             <span className="form__input-error avatarlink-error"/>
           </label>
         </fieldset>
-        <button className="form__save-button" type="submit">Сохранить</button>
       </PopupWithForm>
         
       <PopupWithForm 
@@ -113,6 +113,7 @@ function App() {
         onClose={closeAllPopups} 
         name="add-card" 
         title="Новое место"
+        button="Создать"
       >
         <fieldset className="form__input-container">
           <label className="form__field">
@@ -140,16 +141,14 @@ function App() {
             <span className="form__input-error cardlink-error"/>           
           </label>
         </fieldset>
-        <button className="form__save-button" type="submit">Создать</button>
       </PopupWithForm>
 
       <PopupWithForm 
         onClose={closeAllPopups} 
         name="delete-card" 
         title="Вы уверены?"
-      >
-        <button className="form__save-button" type="submit">Да</button>
-      </PopupWithForm>
+        button="Да"
+      />
 
       <ImagePopup 
         card={selectedCard} 
