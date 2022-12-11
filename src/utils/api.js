@@ -47,7 +47,7 @@ class Api {
 
   // Avatar save
 
-  saveAvatar(link) {
+  setUserAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
@@ -83,31 +83,12 @@ class Api {
     .then(this._checkResponse)
   }
 
-  // Card like add
-
-
-  addLike(id) {
+  // card like-dislike
+  
+  changeLikeCardStatus(id, status) {
+    let method = status? 'PUT' : 'DELETE'
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: 'PUT',
-      headers: this._headers
-    })
-      .then(this._checkResponse)
-  }
-
-  // Card like remove
-
-  removeLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
-    })
-      .then(this._checkResponse)
-  }
-
-  // другие методы работы с API
-  changeLikeCardStatus(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: "PUT",
+      method: method,
       headers: this._headers,
     }).then(this._checkResponse);
   }
