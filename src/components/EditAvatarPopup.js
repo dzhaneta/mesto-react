@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import PopupWithForm from './PopupWithForm';
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
@@ -12,6 +12,11 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
           avatar: avatarPic.current.value,
         });
     }
+
+    // очищаем инпуты попапа при закрытии без сабмита
+    useEffect(() => {
+        avatarPic.current.value = '';
+    }, [isOpen]); 
 
     return (
         <PopupWithForm 

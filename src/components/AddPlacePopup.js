@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace}) {
@@ -24,6 +24,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace}) {
           link,
         });
     }
+
+    // очищаем инпуты попапа при закрытии без сабмита
+    useEffect(() => {
+        setName('');
+        setLink('');
+    }, [isOpen]); 
 
 
     return (
