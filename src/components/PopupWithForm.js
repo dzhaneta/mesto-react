@@ -14,7 +14,12 @@ function PopupWithForm(props) {
                 className="popup__close-button hover-opacity" 
                 type="button"
             />
-            <form className={`form form_type_${props.name}`} name={`${props.name}-form`} noValidate>
+            <form 
+                onSubmit={props.onSubmit}
+                className={`form form_type_${props.name}`} 
+                name={`${props.name}-form`} 
+                noValidate
+            >
                 <h2 className="form__title">{props.title}</h2>
                 {props.children}
                 <button className="form__save-button" type="submit">{props.button}</button>

@@ -15,7 +15,7 @@ class Api {
 
   // Get profile from API
 
-  getProfile() {
+  getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
@@ -33,7 +33,7 @@ class Api {
 
   // Save profile
 
-  saveProfile(name, about) {
+  setUserInfo(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -105,6 +105,12 @@ class Api {
   }
 
   // другие методы работы с API
+  changeLikeCardStatus(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
 }
 
 // API
