@@ -42,7 +42,7 @@ Frontend для проекта **MESTO** — приложения по прот�
 
 ## URL
 
-[gh-pages](https://dzhaneta.github.io/mesto-react/)
+[Ссылка на gh-pages](https://dzhaneta.github.io/mesto-react/)
 
 
 ## Как запустить проект
